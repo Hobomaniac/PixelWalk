@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jalenwinslow.game.utils.Assets;
+import com.jalenwinslow.game.utils.CameraHandler;
 
 public class Main extends ApplicationAdapter {
 	SpriteBatch batch;
@@ -16,10 +17,11 @@ public class Main extends ApplicationAdapter {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		cam = new OrthographicCamera(5, 5);
+		cam = new OrthographicCamera(CameraHandler.CAMERA_WIDTH, CameraHandler.CAMERA_HEIGHT);
+		CameraHandler.cam = cam;
 		cam.position.set(cam.viewportWidth / 2f, cam.viewportHeight / 2f, 0);
 		cam.update();
-		handler = new Handler(this);
+		handler = new Handler(this, cam);
 		handler.init();
 	}
 
