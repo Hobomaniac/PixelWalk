@@ -3,7 +3,7 @@ package com.jalenwinslow.game.utils;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 
 public class CameraHandler {
-    public static final int CAMERA_WIDTH = 7, CAMERA_HEIGHT = 7;
+    public static final int CAMERA_WIDTH = 10, CAMERA_HEIGHT = 10;
     public static int unitX = 0, unitY = 0;
 
     public static OrthographicCamera cam;

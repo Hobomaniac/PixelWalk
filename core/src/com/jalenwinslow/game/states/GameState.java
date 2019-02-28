@@ -8,7 +8,7 @@ import com.jalenwinslow.game.utils.Assets;
 
 public class GameState extends State {
 
-    Map map;
+    private Map map;
     public Player player;
 
     public GameState(Handler handler) {
@@ -29,7 +29,6 @@ public class GameState extends State {
 
     @Override
     public void render(SpriteBatch batch) {
-        //batch.draw(Assets.mapT, 0, 0);
         map.render(batch);
         player.render(batch);
     }
@@ -41,5 +40,8 @@ public class GameState extends State {
     }
 
     //Getters and Setters
+    public Map getMap() {return map;}
+
+    public void setMap(Map map) {this.map = map;}
 
 }

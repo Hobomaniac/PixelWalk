@@ -17,14 +17,6 @@ public class Map extends GameObject {
 
     public Map(Handler handler, float x, float y) {
         super(handler, x , y);
-        /*
-        map = new int[10][10];
-        for (int j = 0; j < map.length; j++) {
-            for (int i = 0; i < map[j].length; i++) {
-                if (j == 0 || j == map.length-1) map[j][i] = 1;
-                if (i == 0 || i == map[j].length-1) map[j][i] = 1;
-            }
-        }*/
         init();
     }
 
@@ -34,6 +26,7 @@ public class Map extends GameObject {
         for (int j = 0; j < map.length; j++) {
             for (int i = 0 ; i < map[j].length; i++) {
                 if (map[j][i] == 1) pixmap.setColor(Color.BLACK);
+                else if (map[j][i] == 2) pixmap.setColor(Color.BLUE);
                 else pixmap.setColor(Color.WHITE);
                 pixmap.drawPixel(i, j);
             }
@@ -55,6 +48,11 @@ public class Map extends GameObject {
     @Override
     public void dispose() {
 
+    }
+
+    //Other methods
+    public int returnPosition(int x, int y) {
+        return map[map.length-1-y][x];
     }
 
     //Getters and Setters
