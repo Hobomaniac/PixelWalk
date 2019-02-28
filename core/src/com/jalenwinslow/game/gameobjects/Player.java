@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jalenwinslow.game.Handler;
+import com.jalenwinslow.game.utils.CameraHandler;
 import com.jalenwinslow.game.utils.Controls;
 
 public class Player extends GameObject {
@@ -30,7 +31,7 @@ public class Player extends GameObject {
     @Override
     public void update(float dt) {
         controls();
-        //updateCam();
+        CameraHandler.updateCam(x, y);
     }
 
     @Override
