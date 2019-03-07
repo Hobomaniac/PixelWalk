@@ -17,7 +17,7 @@ public class Main extends ApplicationAdapter {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		cam = new OrthographicCamera(CameraHandler.CAMERA_WIDTH, CameraHandler.CAMERA_HEIGHT);
+		cam = new OrthographicCamera(CameraHandler.CAMERA_WIDTH+0.5f, CameraHandler.CAMERA_HEIGHT+0.5f);
 		CameraHandler.cam = cam;
 		cam.position.set(cam.viewportWidth / 2f, cam.viewportHeight / 2f, 0);
 		cam.update();

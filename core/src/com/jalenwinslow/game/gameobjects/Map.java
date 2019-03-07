@@ -58,5 +58,9 @@ public class Map extends GameObject {
         return map[map.length-1-y][x];
     }
 
+    public void setPositionEmpty(int x, int y) {
+        map[map.length-1-y][x] = 0;
+    }
+
     //Getters and Setters
 }

@@ -30,7 +30,7 @@ public class LifeBlock extends GameObject {
 
     @Override
     public void update(float dt) {
-
+        checkDeath();
     }
 
     @Override
@@ -69,6 +69,27 @@ public class LifeBlock extends GameObject {
         lifeBlocks.add(lb);
     }
 
+    public static LifeBlock getLifeBlock(int x, int y) {
+        LifeBlock lb = null;
+        for (int i = 0; i < lifeBlocks.size; i++) {
+            if (lifeBlocks.get(i).x == x && lifeBlocks.get(i).y == y) {
+                lb = lifeBlocks.get(i);
+                break;
+            }
+        }
+        return lb;
+    }
+
+    public void checkDeath() {
+        if (life <= 0) {
+            handler.getGameState().getMap().setPositionEmpty((int)x, (int)y);
+            LifeBlock.lifeBlocks.removeValue(this, true);
+        }
+    }
+
     //Getters and Setters
+    public float getLife() {return life;}
+
+    public void setLife(float life) {this.life = life;}
 
 }

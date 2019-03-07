@@ -11,8 +11,8 @@ public class CameraHandler {
     public static void updateCam(float px, float py) {
         unitX = (int) px / CAMERA_WIDTH;
         unitY = (int) py / CAMERA_HEIGHT;
-        cam.position.x = cam.viewportWidth / 2f + CAMERA_WIDTH * unitX;
-        cam.position.y = cam.viewportHeight / 2f + CAMERA_HEIGHT * unitY;
+        cam.position.x = cam.viewportWidth / 2f + CAMERA_WIDTH * unitX - 0.25f;
+        cam.position.y = cam.viewportHeight / 2f + CAMERA_HEIGHT * unitY - 0.25f;
     }
 
     public static void moveRight() {

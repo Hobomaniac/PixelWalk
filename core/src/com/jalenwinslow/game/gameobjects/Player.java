@@ -31,6 +31,7 @@ public class Player extends GameObject {
     public void update(float dt) {
         controls();
         checkCollision();
+        checkLifeBlock();
         x += vecX;
         y += vecY;
         vecX = 0;
@@ -60,6 +61,32 @@ public class Player extends GameObject {
         if (handler.getGameState().getMap().returnPosition((int)x+vecX, (int)y) != 0) vecX = 0;
         if (handler.getGameState().getMap().returnPosition((int)x, (int)y +vecY) != 0) vecY = 0;
 
+    }
+
+    private void checkLifeBlock() {
+        LifeBlock lb = null;
+        int xx = (int)x;
+        int yy = (int)y;
+        if (handler.getGameState().getMap().returnPosition( (int)xx+1, (int)yy) == 2) {
+            lb = LifeBlock.getLifeBlock(xx+1, yy);
+        }
+        if (handler.getGameState().getMap().returnPosition( (int)xx-1, (int)yy) == 2) {
+            if (lb == null) lb = LifeBlock.getLifeBlock(xx-1, yy);
+        }
+        if (handler.getGameState().getMap().returnPosition( (int)xx, (int)yy+1) == 2) {
+            if (lb == null) lb = LifeBlock.getLifeBlock(xx, yy+1);
+        }
+        if (handler.getGameState().getMap().returnPosition( (int)xx, (int)yy-1) == 2) {
+            if (lb == null) lb = LifeBlock.getLifeBlock(xx, yy-1);
+        }
+
+        if (lb != null) {
+            takeFromLifeBlock(lb);
+        }
+    }
+
+    private void takeFromLifeBlock(LifeBlock lb) {
+        if (lb.getLife() > 0) lb.setLife(lb.getLife()-0.01f);
     }
 
 
