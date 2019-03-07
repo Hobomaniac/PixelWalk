@@ -26,7 +26,10 @@ public class Map extends GameObject {
         for (int j = 0; j < map.length; j++) {
             for (int i = 0 ; i < map[j].length; i++) {
                 if (map[j][i] == 1) pixmap.setColor(Color.BLACK);
-                else if (map[j][i] == 2) pixmap.setColor(Color.BLUE);
+                else if (map[j][i] == 2) {
+                    //pixmap.setColor(Color.CYAN);
+                    LifeBlock.addLifeBlock(new LifeBlock(handler, i, map.length-1-j));
+                }
                 else pixmap.setColor(Color.WHITE);
                 pixmap.drawPixel(i, j);
             }

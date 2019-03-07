@@ -2,6 +2,7 @@ package com.jalenwinslow.game.states;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jalenwinslow.game.Handler;
+import com.jalenwinslow.game.gameobjects.LifeBlock;
 import com.jalenwinslow.game.gameobjects.Map;
 import com.jalenwinslow.game.gameobjects.Player;
 import com.jalenwinslow.game.utils.Assets;
@@ -25,16 +26,19 @@ public class GameState extends State {
     public void update(float dt) {
         map.update(dt);
         player.update(dt);
+        LifeBlock.updateLifeBlocks(dt);
     }
 
     @Override
     public void render(SpriteBatch batch) {
         map.render(batch);
         player.render(batch);
+        LifeBlock.renderLifeBlocks(batch);
     }
 
     @Override
     public void dispose() {
+        LifeBlock.disposeLifeBlocks();
         player.dispose();
         map.dispose();
     }
