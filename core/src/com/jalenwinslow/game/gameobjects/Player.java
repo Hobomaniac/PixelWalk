@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.jalenwinslow.game.Handler;
 import com.jalenwinslow.game.utils.CameraHandler;
 import com.jalenwinslow.game.utils.Controls;
@@ -12,6 +13,7 @@ public class Player extends GameObject {
 
     Texture t;
     int vecX, vecY;
+    private float life;
 
     public Player(Handler handler, float x, float y) {
         super(handler, x, y);
@@ -24,11 +26,14 @@ public class Player extends GameObject {
         pm.setColor(Color.GREEN);
         pm.drawPixel(0, 0);
         t = new Texture(pm);
-
+        life = 1;
     }
 
     @Override
     public void update(float dt) {
+        life -= 0.001f;
+        checkDeath();
+
         controls();
         checkCollision();
         checkLifeBlock();
@@ -41,7 +46,9 @@ public class Player extends GameObject {
 
     @Override
     public void render(SpriteBatch batch) {
+        batch.setColor(1, 1, 1, life);
         batch.draw(t, x, y);
+        batch.setColor(1, 1, 1, 1);
     }
 
     @Override
@@ -87,6 +94,14 @@ public class Player extends GameObject {
 
     private void takeFromLifeBlock(LifeBlock lb) {
         if (lb.getLife() > 0) lb.setLife(lb.getLife()-0.01f);
+        life += 0.01f;
+        if (life > 1) life = 1;
+    }
+
+    private void checkDeath() {
+        if (life < 0.1f) {
+            life = 0.1f;
+        }
     }
 
 
